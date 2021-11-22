@@ -130,6 +130,7 @@ export class SliderformComponent implements OnInit {
   log() {
     // for debug
     console.log('1', this.sellersPermitString);
+    console.log("degistiiiiiiiiiiiiiiii")
   }
 }
 
