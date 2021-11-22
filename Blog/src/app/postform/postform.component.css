@@ -1,0 +1,9 @@
+#anadiv{
+  position: absolute;
+  left: 35%;
+  top: 25%;
+
+}
+.alert{
+  padding: 0.1rem 0.9rem ;
+}

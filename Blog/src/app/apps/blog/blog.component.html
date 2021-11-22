@@ -1,0 +1,86 @@
+
+<div
+  class="static-slider-head"
+  style="background-color:black;">
+
+
+  <carousel>
+    <slide style="text-align: center" *ngFor="let slider of sliders">
+      <img src="{{slider.URL}}" alt="first slide" style="width: 1200px;height: 400px">
+    </slide>
+
+    <!--    <slide style="text-align: center">-->
+    <!--      <img src="" alt="second slide" style="width: 70%;height: 500px">-->
+    <!--    </slide>-->
+    <!--    <slide style="text-align: center">-->
+    <!--      <img src="" alt="third slide" style="width: 70%; height: 500px">-->
+    <!--    </slide>-->
+  </carousel>
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let photo of images">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="{{photo.img}}" style="width: auto; height:200px;"
+                 alt="Card image cap">
+
+            <div class="card-body">
+              <p class="card-text"><span style="color:red;opacity: 50%;">{{photo.text}}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--        <div class=" col-md-4">-->
+  <!--          <div class="card mb-4 ">-->
+  <!--            <img class="card-img-top" src="/assets/images/2.png" style="width: 300px; height:200px;"-->
+  <!--                 alt="Card image cap">-->
+  <!--            <div class="card-body">-->
+  <!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional-->
+  <!--                content. This content is a little bit longer.</p>-->
+  <!--              <div class="d-flex justify-content-between align-items-center">-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--        <div class="col-md-4">-->
+  <!--          <div class="card mb-4 box-shadow">-->
+  <!--            <img class="card-img-top" src="/assets/images/7.jpg" style="width: 300px; height:200px;"-->
+  <!--                 alt="Card image cap">-->
+  <!--            <div class="card-body">-->
+  <!--              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional-->
+  <!--                content. This content is a little bit longer.</p>-->
+  <!--              <div class="d-flex justify-content-between align-items-center">-->
+  <!--              </div>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+
+
+  <!--  <div class="container">-->
+  <!--    &lt;!&ndash; Row  &ndash;&gt;-->
+  <!--    <div class="row justify-content-center">-->
+  <!--      &lt;!&ndash; Column &ndash;&gt;-->
+  <!--      <div class="col-lg-9 col-md-6 align-self-center text-center no-trans">-->
+  <!--&lt;!&ndash;        <h1 class="title">Free Angular Blog</h1>&ndash;&gt;-->
+  <!--&lt;!&ndash;        <h5 class="subtitle op-5">&ndash;&gt;-->
+  <!--&lt;!&ndash;          Want a blog app with ng-bootstrap ? Here is the fully workable blog&ndash;&gt;-->
+  <!--&lt;!&ndash;          app in which we are giving add post, edit post and delete post.&ndash;&gt;-->
+  <!--&lt;!&ndash;        </h5>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;        <a&ndash;&gt;-->
+  <!--&lt;!&ndash;          href="https://www.wrappixel.com/free-wrapkit-angular-blog"&ndash;&gt;-->
+  <!--&lt;!&ndash;          class="btn btn-md m-t-30 btn-success-gradiant font-14"&ndash;&gt;-->
+  <!--&lt;!&ndash;          target="blank"&ndash;&gt;-->
+  <!--&lt;!&ndash;          >Download Free</a&ndash;&gt;-->
+  <!--&lt;!&ndash;        >&ndash;&gt;-->
+  <!--      </div>-->
+  <!--      &lt;!&ndash; Column &ndash;&gt;-->
+  <!--    </div>-->
+  <!--  </div>-->
+</div>
+
