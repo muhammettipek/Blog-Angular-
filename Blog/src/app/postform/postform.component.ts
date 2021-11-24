@@ -94,7 +94,6 @@ console.log("data=",data)
            this.loading=false;
            this.route.navigateByUrl('/')
          }
-         console.log("OsmAAAan")
         console.log(data)
       },error => this.loading=false )
 

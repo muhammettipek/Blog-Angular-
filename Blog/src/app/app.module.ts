@@ -19,16 +19,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AdminComponent } from './Admin/admin/admin.component';
 
 
 @NgModule({
 
-  declarations: [
-    AppComponent,
-    SliderformComponent,
-    PostformComponent,
-    AdminpanelformComponent,
-  ],
+    declarations: [
+        AppComponent,
+        SliderformComponent,
+        PostformComponent,
+        AdminpanelformComponent,
+        AdminComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -44,9 +46,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
 
+    ],
+    providers: [],
+    exports: [
 
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

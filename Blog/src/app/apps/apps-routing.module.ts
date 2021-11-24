@@ -7,8 +7,8 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
 
 import { FullComponent } from './layout/full/full.component';
-import {PostformComponent} from "../postform/postform.component";
-import {SliderformComponent} from "../sliderform/sliderform.component";
+import {AdminComponent} from "../Admin/admin/admin.component";
+
 
 
 const routes: Routes = [
@@ -19,8 +19,7 @@ const routes: Routes = [
       { path: '', component: BlogComponent },
       { path: 'blogDetail/:id', component: BlogDetailComponent },
       { path: 'about', component: AboutComponent },
-      {path:"postform",component:PostformComponent},
-      {path:"sliderform",component:SliderformComponent}
+
     ]
   }
 ];
