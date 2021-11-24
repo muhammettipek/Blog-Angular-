@@ -1,18 +1,19 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 import {img, slidersModule} from "./sliders";
 import {Observable} from "rxjs";
 import {PostModel} from "./posts";
 import {ValidatorFn, AbstractControl, FormControl, Validators} from "@angular/forms";
 import {FormGroup} from "@angular/forms";
 import * as AWS from "aws-sdk";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
   baseURL: string = "http://localhost:3000";
-
+  progress: any;
 
   imgFile?: string;
 
@@ -44,11 +45,11 @@ export class RestService {
   }
 
   addPerson(posts: PostModel): Observable<any> {
-
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(posts);
     console.log("Osman=", body)
     return this.http.post(this.baseURL + "/Posts", body, {'headers': headers})
+
   }
 
 

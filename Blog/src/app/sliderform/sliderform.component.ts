@@ -4,6 +4,7 @@ import {RestService} from "../rest.service";
 import {slidersModule} from "../sliders";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgForm} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 
@@ -31,24 +32,22 @@ export class SliderformComponent implements OnInit {
 
   slider = new slidersModule();
 
-  constructor(private http: HttpClient, private restService: RestService) {
+  constructor(private http: HttpClient, private restService: RestService,private route:Router) {
   }
 
   sliderURL: any;
   sliderid: any;
   model: any;
   base64Output ?: string;
-
+loading=false;
 
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
-
-
-  }
+  // onSubmit() {
+  //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
+  // }
 
     // formsubmitted: boolean = false;
 
@@ -80,14 +79,23 @@ export class SliderformComponent implements OnInit {
       this.slider.id = this.sliderid
       this.slider.URL = "data:image/png;base64,"+this.sellersPermitString
 
+      if(this.slider){
+      this.loading=true;
       this.restService.addSlider(this.slider)
         .subscribe((data: any) => {
+          let datta =data
+          if(datta.token){
+            this.loading=false;
+          }else{
+            this.loading=false;
+            this.route.navigateByUrl('/')
+          }
           console.log(data)
-          console.log('upload başarılı')
         },error => {
+          this.loading=false;
           console.log("upload sırasında hata alındı ",error)
         })
-    }
+    }}
   public picked(event:any, field:any) {
     this.currentId = field;
     let fileList: FileList = event.target.files;

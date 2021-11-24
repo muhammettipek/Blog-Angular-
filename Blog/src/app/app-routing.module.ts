@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: '', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule) },
       {path:"postform",component:PostformComponent},
       {path:"sliderform",component:SliderformComponent}
+
     ]
   },
 
