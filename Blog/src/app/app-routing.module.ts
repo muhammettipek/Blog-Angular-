@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {PostformComponent} from "./postform/postform.component";
 import {SliderformComponent} from "./sliderform/sliderform.component";
 import {AdminComponent} from "./Admin/admin/admin.component";
+import {TableComponent} from "./Admin/table/table.component";
+import {AdminfullComponent} from "./Admin/adminfull/adminfull.component";
 
 
 
@@ -21,7 +23,8 @@ const routes: Routes = [
     path:'',
     children:[
       {path:"",loadChildren: () => import('src/app/Admin/adminmodule.module').then(m => m.AdminmoduleModule)},
-      {path:"admin",component:AdminComponent}
+      {path:"admin",component:AdminfullComponent},
+
     ]
   }
 ];

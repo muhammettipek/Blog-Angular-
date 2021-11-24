@@ -20,6 +20,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AdminComponent } from './Admin/admin/admin.component';
+import {AdminmoduleModule} from "./Admin/adminmodule.module";
+import {AppsModule} from "./apps/apps.module";
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { AdminComponent } from './Admin/admin/admin.component';
         CarouselModule.forRoot(),
         BrowserAnimationsModule,
         MatProgressSpinnerModule,
+        AdminmoduleModule,
+        AppsModule,
 
     ],
     providers: [],

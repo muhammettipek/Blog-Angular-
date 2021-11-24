@@ -24,28 +24,31 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
-  declarations: [
-    AppsComponent,
-    BlogComponent,
-    AboutComponent,
-    BlogDetailComponent,
-    RelayOnComponent,
-    TopContentComponent,
-    FullComponent,
-    BannerComponent,
-    // BannerContentComponent,
-    BannerNavigationComponent,
-    FooterComponent,
-  ],
-  imports: [
-    CommonModule,
-    AppsRoutingModule,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    CarouselModule.forRoot()
-  ],
-  providers: [ServiceblogService],
+    declarations: [
+        AppsComponent,
+        BlogComponent,
+        AboutComponent,
+        BlogDetailComponent,
+        RelayOnComponent,
+        TopContentComponent,
+        FullComponent,
+        BannerComponent,
+        // BannerContentComponent,
+        BannerNavigationComponent,
+        FooterComponent,
+    ],
+    imports: [
+        CommonModule,
+        AppsRoutingModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        CarouselModule.forRoot()
+    ],
+    providers: [ServiceblogService],
+    exports: [
+        BannerComponent
+    ]
 })
 export class AppsModule {}
