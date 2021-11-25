@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {PostformComponent} from "./postform/postform.component";
-import {SliderformComponent} from "./sliderform/sliderform.component";
 import {AdminComponent} from "./Admin/admin/admin.component";
-import {TableComponent} from "./Admin/table/table.component";
+
 import {AdminfullComponent} from "./Admin/adminfull/adminfull.component";
 
 
@@ -15,8 +13,6 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: '/apps', pathMatch: 'full' },
       { path: '', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule) },
-      {path:"postform",component:PostformComponent},
-      {path:"sliderform",component:SliderformComponent},
     ]
   },
   {

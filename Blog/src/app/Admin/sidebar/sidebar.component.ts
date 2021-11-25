@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {TableComponent} from "../table/table.component";
+import {SliderTable} from "../SliderTable/table.component";
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
@@ -8,8 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:Router) { }
 
   ngOnInit(): void {
   }

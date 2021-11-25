@@ -3,8 +3,8 @@ import { Blog } from './blog-type';
 import { ServiceblogService } from './blog-service.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import {RestService} from "../../rest.service";
-import {img, slidersModule} from "../../sliders";
+import {RestService} from "../../Admin/rest.service";
+import {img, slidersModule} from "../../Admin/sliders";
 
 @Component({
   selector: 'app-blog',
