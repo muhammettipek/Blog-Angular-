@@ -1,27 +1,50 @@
 
 
-<div class="d-flex mt-5" id="wrapper">
 
-  <!-- Sidebar -->
-  <div class="bg-light border-right" id="sidebar-wrapper">
-    <div class="sidebar-heading"></div>
-    <div class="list-group list-group-flush">
-      <a routerLink='./slidertable' class="list-group-item list-group-item-action bg-light">Sliders</a>
-      <a routerLink="./posttable" class="list-group-item list-group-item-action bg-light">Posts</a>
 
+
+
+
+
+
+  <div class="d-flex " id="wrapper">
+
+    <!-- Sidebar -->
+
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="list-group list-group-flush">
+        <div class="side-menu-container">
+
+
+            <mat-sidenav #appDrawer mode="over" opened="true">
+              <mat-nav-list style="height: 200px">
+                <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+              </mat-nav-list>
+            </mat-sidenav>
+<!--            <app-top-nav fxHide.xs></app-top-nav>-->
+            <div fxFlex></div>
+
+
+
+
+
+
+        </div>
+
+
+      </div>
     </div>
-  </div>
-  <!-- /#sidebar-wrapper -->
+    <!-- /#sidebar-wrapper -->
 
 
-  <!-- Page Content -->
-  <div id="page-content-wrapper ">
-    <div class="container-fluid " >
-      <h1 class="mt-4 ml-3">Hoşgeldiniz</h1>
-
-
-<router-outlet></router-outlet>
+    <!-- Page Content -->
+    <div id="page-content-wrapper ">
+      <div class="container-fluid ">
+        <h1 class="mt-4 ml-3" >Hoşgeldiniz</h1>
+        <router-outlet></router-outlet>
+      </div>
     </div>
+
+
   </div>
-</div>
 

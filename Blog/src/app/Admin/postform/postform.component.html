@@ -1,11 +1,6 @@
 <form >
   <div id="anadiv">
 
-    <div class="form-group" style="width: 100%">
-        <input required type="text" class="form-control" [(ngModel)]="postid" name="pid" #id="ngModel"
-               placeholder="İd">
-      <div class="alert alert-danger " *ngIf="!id.valid && !id.untouched" style="height: 30px;font-size: 15px">Bu alan zorunludur.</div>
-      </div>
     <div class="form-group" style="width: 100%" >
       <input required class="form-control " type="file" accept="image/*"
              (change)="picked($event,1)"
@@ -20,7 +15,6 @@
     </div>
     <div class="justify-content-center align-items-center d-flex col-12">
       <button mat-raised-button id="button" (click)="addPerson();"
-              routerLink="../posttable"
                [class.spinner]="loading" [disabled]="loading"
                class="btn btn-primary" style="">KAYDET
         <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>

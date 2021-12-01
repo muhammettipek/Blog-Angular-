@@ -8,14 +8,14 @@
           <th>Photo</th>
           <th>İD</th>
 
-          <th style="text-align: center">İşlemler</th>
+          <th style="text-align: center;width: 200px">İşlemler</th>
         </tr>
         </thead>
         <tbody>
         <tr style="text-align:center;" *ngFor="let slid of SliderArray;index as i" style="height: 20px;width: 750px">
-          <td><img alt="slider" style="; width: 50px" src="{{slid.URL}}"></td>
+          <td><img alt="slider" style="; width: 100px;" src="{{slid.URL}}"></td>
           <td style="width: 10px">{{slid.id}}</td>
-
+<td><button class=" btn btn-danger" (click)="deleteslider(i)" style="height: 40px;width: 70px;line-height: 0px;padding: 0px">Sil</button></td>
 
 <!--            <button id="incelebtn" (click)="ataindex(i,'incele')" routerLink="/form" class="mb-3 btn btn-success">İncele</button>&nbsp;-->
 

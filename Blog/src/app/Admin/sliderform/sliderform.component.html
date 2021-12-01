@@ -1,33 +1,26 @@
-<form #contactForm="ngForm" (ngSubmit)="contactForm.form.valid" role="form" >
+<form #contactForm="ngForm" (ngSubmit)="contactForm.form.valid" role="form">
   <div id="anadiv">
-    <div class="form-group" style="width: 100%">
-      <input required type="text"   class="form-control"
-             [ngClass]="{ 'is-invalid': contactForm.submitted && id.invalid }"
-             [(ngModel)]="sliderid" name="pid" #id="ngModel"
-             placeholder="İd">
-<!--      <div class="alert alert-danger " *ngIf="!id.valid && !id.untouched" style="height: 30px;font-size: 15px" [ngClass]="{ 'is-invalid': contactForm.submitted && id.invalid }"></div>-->
-      <div *ngIf="id.invalid && contactForm.submitted" class="invalid-feedback">
-        <div> Bu alan zorunludur</div>
+      <!--      <div class="alert alert-danger " *ngIf="!id.valid && !id.untouched" style="height: 30px;font-size: 15px" [ngClass]="{ 'is-invalid': contactForm.submitted && id.invalid }"></div>-->
+      <div class="form-group " style="width: 100%" >
+        <mat-toolbar>
+          <input required class="form-control file-input" type="file"
+                 accept="image/*" style="height: 60px;color: black"
+                 (change)="picked($event,1)" id="file"
+                 [(ngModel)]="sliderURL" name="pimg" #img="ngModel"
+                 placeholder="ImageURL">
+        </mat-toolbar>
+        <div class="alert alert-danger " *ngIf="!img.valid && !img.untouched" style="height: 30px;">Bu alan
+          zorunludur.
+        </div>
       </div>
-    </div>
-    <div class="form-group " style="width: 100%">
-      <mat-toolbar>
-      <input  required class="form-control file-input" type="file"
-              accept="image/*" style="height: 60px;color: black"
-             (change)="picked($event,1)" id="file"
-              [(ngModel)]="sliderURL" name="pimg" #img="ngModel"
-             placeholder="ImageURL">
-      </mat-toolbar>
-      <div class="alert alert-danger " *ngIf="!img.valid && !img.untouched" style="height: 30px;">Bu alan zorunludur.</div>
-    </div>
-    <div class="justify-content-center align-items-center d-flex col-12">
+      <div class="justify-content-center align-items-center d-flex col-12">
         <button mat-raised-button type="submit" [disabled]="loading"
-                routerLink="../slidertable"
+
                 id="button" (click)="addSlider()"
                 class="btn btn-primary" style="">KAYDET
           <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>
+      </div>
     </div>
-  </div>
 </form>
 
 

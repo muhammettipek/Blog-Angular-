@@ -76,7 +76,6 @@ export class PostformComponent implements OnInit {
       sellersPermitFile: this.ExteriorPicString,
     };
 // this.route.navigateByUrl("/")
-    this.post.id=this.postid
     this.post.img="data:image/png;base64,"+this.sellersPermitString
     this.post.text=this.texttng
 console.log("osman=",this.texttng)
@@ -84,6 +83,7 @@ console.log("osman=",this.texttng)
 this.loading=true;
     this.restService.addPerson(this.post)
       .subscribe((data: any) => {
+        this.route.navigateByUrl("admin/posttable")
         let dataa = data;
         console.log("data=",data)
          if(dataa.token){

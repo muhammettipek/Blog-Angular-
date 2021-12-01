@@ -75,14 +75,13 @@ loading=false;
     {this.finalJson = {
       sellersPermitFile: this.ExteriorPicString,
     };
-
-      this.slider.id = this.sliderid
       this.slider.URL = "data:image/png;base64,"+this.sellersPermitString
 
       if(this.slider){
       this.loading=true;
       this.restService.addSlider(this.slider)
         .subscribe((data: any) => {
+          this.route.navigateByUrl("admin/slidertable")
           let datta =data
           if(datta.token){
             this.loading=false;

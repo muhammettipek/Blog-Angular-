@@ -23,12 +23,18 @@ const routes: Routes = [
     path: 'admin',
     component: AdminfullComponent,
     children: [
-      { path:'slidertable',component:SliderTable},
-      { path:'sliderform',component:SliderformComponent},
-      { path:'posttable',component:PostTableComponent},
-      { path:"postform",component:PostformComponent}
+      { path:'Post',children:[
+          { path:'posttable',component:PostTableComponent},
+          { path:"postform",component:PostformComponent},
+
+        ]},
+      {path:'Slider',children:[
+          {path:"slidertable",component: SliderTable},
+          {path:"sliderform",component:SliderformComponent}
+        ]}
     ]
-  }
+  },
+  {path:'',component:FullComponent}
 ];
 
 

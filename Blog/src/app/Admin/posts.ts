@@ -1,5 +1,5 @@
 export class PostModel {
-  id?:string;
+  id?:number;
   img?:string;
   text?:string;
 }

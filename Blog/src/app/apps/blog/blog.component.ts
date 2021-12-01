@@ -4,7 +4,8 @@ import { ServiceblogService } from './blog-service.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {RestService} from "../../Admin/rest.service";
-import {img, slidersModule} from "../../Admin/sliders";
+import {slidersModule} from "../../Admin/sliders";
+import {PostModel} from "../../Admin/posts";
 
 @Component({
   selector: 'app-blog',
@@ -24,10 +25,10 @@ export class BlogComponent implements OnInit {
   }
 
   imgind=["id","img","text"];
-  images:img[]=[];
+  images:PostModel[]=[];
 
 
-  index=["id","Order","URL"];
+  index=["id","URL"];
   sliders:slidersModule[]=[];
 
   ngOnInit(): void {

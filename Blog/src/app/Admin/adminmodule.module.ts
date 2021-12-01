@@ -19,6 +19,12 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
+import {MatIconModule} from "@angular/material/icon";
+import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
+
+
 
 
 @NgModule({
@@ -30,6 +36,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     SliderformComponent,
     PostTableComponent,
     SpinnerComponent,
+    MenuListItemComponent,
+
+
 
 
   ],
@@ -43,15 +52,18 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   ],
 
 
-    imports: [
-        CommonModule,
-        AdminmoduleRoutingModule,
-        FormsModule,
-        MatToolbarModule,
-        MatProgressBarModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-    ]
+  imports: [
+    CommonModule,
+    AdminmoduleRoutingModule,
+    FormsModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatIconModule,
+    MatSidenavModule,
+  ]
 })
 export class AdminmoduleModule { }

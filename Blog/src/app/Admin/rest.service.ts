@@ -1,43 +1,52 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
-import {img, slidersModule} from "./sliders";
-import {Observable} from "rxjs";
+import {slidersModule} from "./sliders";
+import {BehaviorSubject, Observable} from "rxjs";
 import {PostModel} from "./posts";
 import {ValidatorFn, AbstractControl, FormControl, Validators} from "@angular/forms";
 import {FormGroup} from "@angular/forms";
 import * as AWS from "aws-sdk";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {SidebarComponent} from "./sidebar/sidebar.component";
+import {NavigationEnd, Router,Event} from "@angular/router";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
+
+  public currentURL = new BehaviorSubject<any>(undefined);
+
   baseURL: string = "http://localhost:3000";
   progress: any;
-
+ sliderURL: string="http://localhost:3000/Sliders"
+  postURL:string="http://localhost:3000/Posts"
   imgFile?: string;
+id?:number
 
-  constructor(private http: HttpClient) {
+  public appDrawer:any;
+
+  constructor(private http: HttpClient,private router:Router) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentURL.next(event.urlAfterRedirects);
+      }
+    });
   }
 
   URL: string = 'http://localhost:3000/Sliders';
   img: string = "http://localhost:3000/Posts";
 
   getimg() {
-    return this.http.get<img[]>(this.img)
+    return this.http.get<PostModel[]>(this.img)
   }
 
   getslider() {
     return this.http.get<slidersModule[]>(this.URL)
   }
 
-  addSlider(slider
-              :
-              slidersModule
-  ):
-    Observable<any> {
+  addSlider(slider: slidersModule): Observable<any> {
 
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(slider);
@@ -49,11 +58,7 @@ export class RestService {
 
   }
 
-  addPerson(posts
-              :
-              PostModel
-  ):
-    Observable<any> {
+  addPerson(posts: PostModel): Observable<any> {
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(posts);
     console.log("Osman=", body)
@@ -61,19 +66,21 @@ export class RestService {
 
   }
 
+  deleteslider(sliderid:number):Observable<any>{
 
+return this.http.delete<number>(`${this.sliderURL}/${sliderid}`)
+
+  }
+
+  deletepost(postid:number):Observable<any>{
+    return this.http.delete<number>(`${this.postURL}/${postid}`)
+  }
+  public closeNav() {
+    this.appDrawer.close();
+  }
+
+  public openNav() {
+    this.appDrawer.open();
+  }
 }
 
-// export class ImageService {
-//
-//   constructor(private http: Http) {}
-//
-//
-//   public uploadImage(image: File): Observable<Response> {
-//     const formData = new FormData();
-//
-//     formData.append('image', image);
-//
-//     return this.http.post('/api/v1/image-upload', formData);
-//   }
-// }
