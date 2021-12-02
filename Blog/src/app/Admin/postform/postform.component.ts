@@ -2,19 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PostModel} from "../posts";
 import {RestService} from "../rest.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { HttpEvent, HttpEventType,HttpResponse } from '@angular/common/http';
-import {MatSpinner} from "@angular/material/progress-spinner";
-import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 
 
-// class ImageService {
-//   constructor(public src: string, public file: File) {}
 
 
-class FileUploadService {
-}
 
 @Component({
   selector: 'app-postform',
@@ -23,6 +15,11 @@ class FileUploadService {
 })
 export class PostformComponent implements OnInit {
 
+  isLoading = false;
+
+  PostArray2:Array<PostModel>=[]
+
+  i:number=0;
 
   loading = false;
   sellersPermitFile: any;
@@ -37,37 +34,40 @@ export class PostformComponent implements OnInit {
   currentId: number = 0;
 
   post = new PostModel();
-  // selectedFile: ImageSnippet;
+
+  mod?: string;
   constructor(private http: HttpClient,private restService:RestService,private route:Router) {}
-//   processFile(imageInput: any) {
-//     const file: File = imageInput.files[0];
-//     const reader = new FileReader();
-//
-//     reader.addEventListener('load', (event: any) => {
-//
-//       this.selectedFile = new ImageSnippet(event.target.result, file);
-//
-//       this.imageService.uploadImage(this.selectedFile.file).subscribe(
-//         (res) => {
-//
-//         },
-//         (err) => {
-//
-//         })
-//     });
-//
-//     reader.readAsDataURL(file);
-//   }
-// }
-  postid: any;
+
+
   imgng: any;
   texttng: any;
+  formbuton ="Kaydet";
 
 
 
   ngOnInit(): void {
 
+    this.restService.getimg().subscribe(response=>{
+      this.PostArray2=response;
+      this.texttng=(this.PostArray2[this.i].text)
 
+
+    })
+
+this.restService.getindex().subscribe(index=>{
+  this.i=index;
+})
+
+this.restService.getmod().subscribe(a=>{
+this.mod=a;
+})
+    if(this.mod=='güncelle'){
+
+      console.log(" init içi if = güncelle ilk satır")
+      console.log(" init içi if = güncelle alt stır")
+      this.formbuton="güncelle"
+      this.guncelle()
+    }
   }
 
   addPerson():void {
@@ -83,7 +83,7 @@ console.log("osman=",this.texttng)
 this.loading=true;
     this.restService.addPerson(this.post)
       .subscribe((data: any) => {
-        this.route.navigateByUrl("admin/posttable")
+        this.route.navigateByUrl("admin/Post/posttable")
         let dataa = data;
         console.log("data=",data)
          if(dataa.token){
@@ -146,6 +146,27 @@ console.log("data=",data)
     console.log('1', this.sellersPermitString);
     console.log("degistiiiiiiiiiiiiiiii")
   }
+
+guncelle(){
+
+
+  let text = document.getElementById("postformtextarea") as HTMLInputElement
+
+  this.PostArray2[this.i].text = text.value
+
+  console.log("value===",text.value)
+
+}
+
+btnclick(){
+    if(this.mod=='güncelle'){
+      console.log("sa")
+      this.guncelle()
+    }
+    else{
+      this.addPerson()
+    }
+}
 
 
 }

@@ -14,9 +14,9 @@
       <textarea class="form-control" id="postformtextarea " [(ngModel)]="texttng" name="ptext" #txt="ngModel" rows="3" placeholder="Yazı"></textarea>
     </div>
     <div class="justify-content-center align-items-center d-flex col-12">
-      <button mat-raised-button id="button" (click)="addPerson();"
+      <button mat-raised-button id="button" (click)="btnclick()"
                [class.spinner]="loading" [disabled]="loading"
-               class="btn btn-primary" style="">KAYDET
+               class="btn btn-primary" style="">{{formbuton}}
         <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>
     </div>
   </div>

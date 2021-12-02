@@ -43,6 +43,7 @@ loading=false;
 
 
   ngOnInit(): void {
+    this.restService.changemod(0,"Slider Form")
   }
 
   // onSubmit() {
@@ -81,7 +82,7 @@ loading=false;
       this.loading=true;
       this.restService.addSlider(this.slider)
         .subscribe((data: any) => {
-          this.route.navigateByUrl("admin/slidertable")
+          this.route.navigateByUrl("admin/Slider/slidertable")
           let datta =data
           if(datta.token){
             this.loading=false;

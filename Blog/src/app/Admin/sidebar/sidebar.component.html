@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
   <div class="d-flex " id="wrapper">
 
     <!-- Sidebar -->
@@ -18,7 +10,7 @@
 
             <mat-sidenav #appDrawer mode="over" opened="true">
               <mat-nav-list style="height: 200px">
-                <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+                <app-menu-list-item *ngFor="let item of navItems" [item]="item" ></app-menu-list-item>
               </mat-nav-list>
             </mat-sidenav>
 <!--            <app-top-nav fxHide.xs></app-top-nav>-->
@@ -40,7 +32,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper ">
       <div class="container-fluid ">
-        <h1 class="mt-4 ml-3" >Hoşgeldiniz</h1>
+        <h1 class="mt-4 ml-3" >{{yazi}}</h1>
         <router-outlet></router-outlet>
       </div>
     </div>

@@ -22,6 +22,7 @@ export class SliderTable implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reservice.changemod(this.i,"Slider Table")
 
     this.reservice.getslider().subscribe(
       (response) => {

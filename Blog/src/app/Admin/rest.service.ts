@@ -15,15 +15,20 @@ import {NavigationEnd, Router,Event} from "@angular/router";
   providedIn: 'root'
 })
 export class RestService {
+  public degis:BehaviorSubject<number>=new BehaviorSubject<number>(1)
+
+
+  public mod:BehaviorSubject<string> = new BehaviorSubject("")
+
 
   public currentURL = new BehaviorSubject<any>(undefined);
 
   baseURL: string = "http://localhost:3000";
   progress: any;
- sliderURL: string="http://localhost:3000/Sliders"
+  sliderURL: string="http://localhost:3000/Sliders"
   postURL:string="http://localhost:3000/Posts"
   imgFile?: string;
-id?:number
+  id?:number
 
   public appDrawer:any;
 
@@ -75,12 +80,21 @@ return this.http.delete<number>(`${this.sliderURL}/${sliderid}`)
   deletepost(postid:number):Observable<any>{
     return this.http.delete<number>(`${this.postURL}/${postid}`)
   }
-  public closeNav() {
-    this.appDrawer.close();
+
+
+
+  getmod():Observable<string>{
+    return this.mod.asObservable();
+
   }
 
-  public openNav() {
-    this.appDrawer.open();
+  changemod(i:number,mod:string) {
+    this.mod.next(mod);
+    this.degis.next(i);
   }
+   getindex(){
+    return this.degis.asObservable();
+}
+
 }
 

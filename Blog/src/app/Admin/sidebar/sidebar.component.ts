@@ -15,17 +15,20 @@ import {VERSION}from '@angular/material/core';
 })
 export class SidebarComponent implements OnInit{
 
-
-
   @ViewChild("appDrawer") appDrawer?: ElementRef;
-version=VERSION;
+  mod?: string;
+yazi = "Hoşgeldiniz....."
+
+    version=VERSION;
+
+
   navItems:NavItem[]=[
+
     {
       displayName:'Anasayfa',
       iconName:'home',
       route:''
     },
-
     {
       displayName:'Post',
       iconName:'recent_actors',
@@ -40,8 +43,7 @@ version=VERSION;
         {
           displayName:'Post Form',
           iconName:'group',
-          route:'admin/Post/postform'
-
+          route:'admin/Post/postform',
         }
       ]
 
@@ -50,6 +52,7 @@ version=VERSION;
       displayName:'Slider',
       iconName:'recent_actors',
       route:'Slider',
+      mod:"Slider",
       children:[
         {
           displayName: 'Slider Table',
@@ -60,25 +63,34 @@ version=VERSION;
         {
           displayName: 'Slider Form',
           iconName: 'group',
-          route: 'admin/Slider/sliderform'
+          route: 'admin/Slider/sliderform',
+          mod:"Slider Form"
         }
-
-      ]
-    }
+      ],
+    },
 
   ]
 
 
 
-
-
-constructor(private route:Router,private navService:RestService) {}
+constructor(private route:Router,private restService:RestService) {}
 
   ngAfterViewInit() {
-    this.navService.appDrawer = this.appDrawer;
+    this.restService.appDrawer = this.appDrawer;
   }
 
   ngOnInit(): void {
 
+    this.restService.getmod().subscribe((a) => {
+      this.mod= a
+       this.yazi=a;
+        console.log("a==",a)
+
+    });
+
+
+  }
+  changemod(i:number,mod:string):void{
+    this.restService.changemod(i,mod);
   }
         }

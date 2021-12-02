@@ -23,8 +23,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
-
-
+import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -64,6 +64,7 @@ import { MenuListItemComponent } from './menu-list-item/menu-list-item.component
     MatListModule,
     MatIconModule,
     MatSidenavModule,
+    NgbCollapseModule,
   ]
 })
 export class AdminmoduleModule { }
