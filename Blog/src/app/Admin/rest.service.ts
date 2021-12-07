@@ -51,6 +51,7 @@ export class RestService {
     return this.http.get<slidersModule[]>(this.URL)
   }
 
+
   addSlider(slider: slidersModule): Observable<any> {
 
     const headers = {'content-type': 'application/json'}
@@ -95,6 +96,14 @@ return this.http.delete<number>(`${this.sliderURL}/${sliderid}`)
    getindex(){
     return this.degis.asObservable();
 }
+
+postdegis(postid:number,posts: PostModel): Observable<any>{
+  //const body = JSON.stringify(posts);
+   return this.http.put<PostModel>(`${this.postURL}/${postid}`,posts)
+
+
+}
+
 
 }
 

@@ -1,10 +1,46 @@
+
+
+
 #anadiv{
   position: absolute;
   left: 35%;
-  top: 25%;
+  top: 15%;
 
 }
-.alert{
-  padding: 0.1rem 0.9rem ;
+.alert {
+  padding: 0.1rem 0.9rem;
+
 }
+
+.file-upload-button {
+  background-color: #ff5252;
+  border-radius: 50%;
+  height: 3rem;
+  overflow: hidden;
+  position: relative;
+  width: 3rem;
+}
+
+/*::after {*/
+/*   content: '+';*/
+/*   color: #fff;*/
+/*   font-size: 1.5rem;*/
+/*   text-align: center;*/
+/* }*/
+.geeks {
+  width:500px;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.geeks img {
+  width: 100%;
+  transition: 0.5s all ease-in-out;
+}
+
+.geeks:hover img {
+  transform: scale(1.1);
+}
+
 

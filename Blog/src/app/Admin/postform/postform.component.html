@@ -1,12 +1,24 @@
 <form >
   <div id="anadiv">
+    <div id="imagediv" class="geeks" style="text-align: center" *ngIf="this.mod=='Güncelle'">
+      <label class="view overlay" for="image">
+      <input type="file" name="image" id="image" style="display: none;" (change)="picked($event,1)">
+      <img class="img-fluid" src="{{image}}" alt="smaple image" *ngIf="image">
+      </label>
 
-    <div class="form-group" style="width: 100%" >
+
+
+<!--      <button style="top:20% ;left: 45%;position: absolute; opacity: 50%;background-color: #555;" class="file-upload-btn">-->
+<!--      <input type="file" id="input2" class="form-control" (change)="picked($event,1)" #img2> </button>-->
+
+    </div>
+    <div class="form-group" style="width: 100%" *ngIf="this.mod!=='Güncelle'">
+
       <input required class="form-control " type="file" accept="image/*"
              (change)="picked($event,1)"
              style="height: 60px;color: black"
              [(ngModel)]="imgng" name="pimg" #img="ngModel"
-             placeholder="ImageURL">
+             placeholder="ImageURL" >
 
       <div class="alert alert-danger " *ngIf="!img.valid && !img.untouched" style="height: 30px;">Bu alan zorunludur.</div>
     </div>

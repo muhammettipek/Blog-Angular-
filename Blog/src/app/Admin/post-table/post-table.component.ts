@@ -57,9 +57,6 @@ mod?:string
     console.log("i==",i)
     this.route.navigateByUrl("admin/Post/postform")
 
-
-
-
   }
 
 }
