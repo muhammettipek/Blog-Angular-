@@ -3,6 +3,10 @@ import {HttpClient} from "@angular/common/http";
 import {PostModel} from "../posts";
 import {RestService} from "../rest.service";
 import {Router} from "@angular/router";
+import {DatePipe, registerLocaleData} from "@angular/common";
+import {dateType} from "aws-sdk/clients/iam";
+import {FormControl} from "@angular/forms";
+import localeTr from "@angular/common/locales/tr"
 
 
 @Component({
@@ -11,6 +15,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./postform.component.css']
 })
 export class PostformComponent implements OnInit {
+
 
   isLoading = false;
 
@@ -33,6 +38,8 @@ export class PostformComponent implements OnInit {
   post = new PostModel();
 
   mod?: string;
+  tarih: any;
+
 
   constructor(private http: HttpClient, private restService: RestService, private route: Router) {
   }
@@ -43,15 +50,18 @@ export class PostformComponent implements OnInit {
   formbuton = "Kaydet";
   image: any;
   imageng: any;
+  postdate:any;
+  titleng: any;
 
 
   ngOnInit(): void {
-
+    registerLocaleData(localeTr, 'tr-TR');
 
       this.restService.getimg().subscribe(response => {
         this.PostArray2 = response;
         if(this.mod=='Güncelle'){
-
+          this.titleng=(this.PostArray2[this.i].title)
+          this.postdate=(this.PostArray2[this.i].date)
           this.image=(this.PostArray2[this.i].img)
           this.imgng=(this.PostArray2[this.i].img)
           this.texttng = (this.PostArray2[this.i].text)
@@ -74,16 +84,21 @@ export class PostformComponent implements OnInit {
 
   addPerson(): void {
 
-
-
     this.finalJson = {
       sellersPermitFile: this.ExteriorPicString,
     };
 // this.route.navigateByUrl("/")
-    this.post.img = "data:image/png;base64," + this.sellersPermitString
+    this.post.img   = "data:image/png;base64," + this.sellersPermitString
+    this.post.text  = this.texttng
+    this.post.title = this.titleng
+    console.log("titleee===",this.titleng)
+console.log("postdate===",typeof this.postdate)
 
-    this.post.text = this.texttng
-    console.log("osman=", this.texttng)
+
+     const dateSendingToServer = new DatePipe('tr-TR').transform(this.postdate, 'MMMM d, y, hh:mm:ss ')
+    this.post.date =  dateSendingToServer
+
+    console.log("osman=", dateSendingToServer)
     if (this.post) {
       this.loading = true;
       this.restService.addPerson(this.post)
@@ -160,6 +175,7 @@ export class PostformComponent implements OnInit {
     // for debug
     console.log('1', this.sellersPermitString);
     console.log("degistiiiiiiiiiiiiiiii")
+    console.log("tarih==",this.postdate)
   }
 
 
@@ -167,11 +183,6 @@ export class PostformComponent implements OnInit {
   guncelle():void {
     this.imgng=(this.PostArray2[this.i].img)
 
-    if(this.post.img=='data:image/png;base64,undefined'){
-      this.sellersPermitString=(this.PostArray2[this.i].img)
-      this.post.img=(this.PostArray2[this.i].img)
-      console.log("aaa=========",this.post.img)
-    }
 
 
 console.log("=========",this.post.img)
@@ -190,6 +201,7 @@ console.log("=========",this.post.img)
 
     console.log("post.img==",this.post.img)
     this.post.text = this.texttng
+    this.post.date=this.postdate
     console.log("body olarak giden post =>",this.post)
     console.log("this.texttng =>",this.texttng)
     this.restService.postdegis(postid,this.post).subscribe(postt=>{
@@ -211,6 +223,7 @@ console.log("=========",this.post.img)
       this.addPerson()
     }
   }
+
 
 
 }

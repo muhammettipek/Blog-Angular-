@@ -6,7 +6,9 @@
         <thead>
         <tr >
           <th>Photo</th>
+          <th>Title</th>
           <th>Text</th>
+          <th>Date</th>
 
           <th style="text-align: center">İşlemler</th>
         </tr>
@@ -14,9 +16,11 @@
         <tbody>
         <tr style="text-align:center;" *ngFor="let post of PostArray;index as i" style="height: 20px">
           <td style="width: 80px"><img alt="slider" style="; width: 50px" src="{{post.img}}"></td>
+          <td>{{post.title}}</td>
           <td style="width: 750px">{{post.text}}</td>
+          <td>{{post.date}}</td>
           <td><button class=" btn btn-danger" (click)="deleteslider(i)" style="height: 40px;width: 70px;line-height: 0px;padding: 0px">Sil</button>
-          <button class="btn btn-success ml-1"  style="width: 90px;height: 50px;line-height: 0px;padding: 0px" (click)="changemod(i,'Güncelle')" >Güncelle</button></td>
+          <button class="btn btn-success ml-1"  style="width: 70px;height: 40px;line-height: 0px;padding: 0px" (click)="changemod(i,'Güncelle')" >Güncelle</button></td>
 
           <!--            <button id="incelebtn" (click)="ataindex(i,'incele')" routerLink="/form" class="mb-3 btn btn-success">İncele</button>&nbsp;-->
 

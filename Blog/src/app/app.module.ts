@@ -24,6 +24,8 @@ import {AppsModule} from "./apps/apps.module";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {SpinnerService} from "./loader/spinner.service";
 import {LoaderInterceptor} from "./loader/loader.interceptor";
+import {MDBBootstrapModule} from "angular-bootstrap-md";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
 
@@ -51,6 +53,8 @@ import {LoaderInterceptor} from "./loader/loader.interceptor";
     AdminmoduleModule,
     AppsModule,
     MatProgressBarModule,
+    MDBBootstrapModule.forRoot(),
+    MatDialogModule
 
 
   ],

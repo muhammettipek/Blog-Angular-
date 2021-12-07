@@ -27,20 +27,16 @@
 /*   font-size: 1.5rem;*/
 /*   text-align: center;*/
 /* }*/
-.geeks {
-  width:500px;
-  height: 400px;
-  overflow: hidden;
-  margin-bottom: 0;
-}
 
-.geeks img {
-  width: 100%;
-  transition: 0.5s all ease-in-out;
-}
 
-.geeks:hover img {
-  transform: scale(1.1);
-}
+/*.geeks img {*/
+/*  width: 100%;*/
+/*  transition: 0.5s all ease-in-out;*/
+/*  height: 300px;*/
+/*}*/
+
+/*.geeks:hover img {*/
+/*  transform: scale(1.1);*/
+/*}*/
 
 

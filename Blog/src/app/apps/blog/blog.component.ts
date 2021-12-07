@@ -24,7 +24,7 @@ export class BlogComponent implements OnInit {
     this.service.showEdit = false;
   }
 
-  imgind=["id","img","text"];
+  imgind=["id","img","text","date"];
   images:PostModel[]=[];
 
 

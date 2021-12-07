@@ -25,6 +25,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { MenuListItemComponent } from './menu-list-item/menu-list-item.component';
 import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     PostTableComponent,
     SpinnerComponent,
     MenuListItemComponent,
+
 
 
 
@@ -65,6 +67,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     MatIconModule,
     MatSidenavModule,
     NgbCollapseModule,
+    MatDialogModule
   ]
 })
 export class AdminmoduleModule { }
