@@ -8,6 +8,7 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
 import { FullComponent } from './layout/full/full.component';
 import {AdminComponent} from "../Admin/admin/admin.component";
+import {PostdetayComponent} from "./postdetay/postdetay.component";
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', component: BlogComponent },
       { path: 'blogDetail/:id', component: BlogDetailComponent },
       { path: 'about', component: AboutComponent },
+      { path:'detail',component:PostdetayComponent}
 
     ]
   }

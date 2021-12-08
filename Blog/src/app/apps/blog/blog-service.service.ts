@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import { blogs } from './blog-data';
 
 
@@ -8,6 +8,9 @@ import { blogs } from './blog-data';
   providedIn: 'root'
 })
 export class ServiceblogService {
+
+  public index:BehaviorSubject<number>=new BehaviorSubject<number>(1)
+
 
   Blogs: any[] = [];
   loginStatusService = false;
@@ -17,6 +20,13 @@ export class ServiceblogService {
 
 
   constructor(public http: HttpClient) {
+  }
+
+  indexal(i:number){
+    this.index.next(i);
+  }
+  indexgetir(){
+    return this.index.asObservable()
   }
 
   public getBlog(): Observable<any> {

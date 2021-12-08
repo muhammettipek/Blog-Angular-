@@ -18,7 +18,7 @@
           <td style="width: 80px"><img alt="slider" style="; width: 50px" src="{{post.img}}"></td>
           <td>{{post.title}}</td>
           <td style="width: 750px">{{post.text}}</td>
-          <td>{{post.date}}</td>
+          <td>{{post.date|date:'d,M,y'}}</td>
           <td><button class=" btn btn-danger" (click)="deleteslider(i)" style="height: 40px;width: 70px;line-height: 0px;padding: 0px">Sil</button>
           <button class="btn btn-success ml-1"  style="width: 70px;height: 40px;line-height: 0px;padding: 0px" (click)="changemod(i,'Güncelle')" >Güncelle</button></td>
 

@@ -7,7 +7,8 @@ import {DatePipe, registerLocaleData} from "@angular/common";
 import {dateType} from "aws-sdk/clients/iam";
 import {FormControl} from "@angular/forms";
 import localeTr from "@angular/common/locales/tr"
-
+import {NgForm} from "@angular/forms";
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-postform',
@@ -35,7 +36,7 @@ export class PostformComponent implements OnInit {
 
   currentId: number = 0;
 
-  post = new PostModel();
+  post:PostModel = new PostModel();
 
   mod?: string;
   tarih: any;
@@ -60,8 +61,10 @@ export class PostformComponent implements OnInit {
       this.restService.getimg().subscribe(response => {
         this.PostArray2 = response;
         if(this.mod=='Güncelle'){
-          this.titleng=(this.PostArray2[this.i].title)
           this.postdate=(this.PostArray2[this.i].date)
+          this.titleng=(this.PostArray2[this.i].title)
+
+          console.log("tarih==",this.PostArray2[this.i].date)
           this.image=(this.PostArray2[this.i].img)
           this.imgng=(this.PostArray2[this.i].img)
           this.texttng = (this.PostArray2[this.i].text)
@@ -95,7 +98,7 @@ export class PostformComponent implements OnInit {
 console.log("postdate===",typeof this.postdate)
 
 
-     const dateSendingToServer = new DatePipe('tr-TR').transform(this.postdate, 'MMMM d, y, hh:mm:ss ')
+     const dateSendingToServer = new DatePipe('en-US').transform(this.postdate, 'yyyy-MM-ddThh:mm:ss')
     this.post.date =  dateSendingToServer
 
     console.log("osman=", dateSendingToServer)
@@ -103,7 +106,11 @@ console.log("postdate===",typeof this.postdate)
       this.loading = true;
       this.restService.addPerson(this.post)
         .subscribe((data: any) => {
-          this.route.navigateByUrl("admin/Post/posttable")
+
+  if(this.formSubmitted==false){
+  this.route.navigateByUrl("admin/Post/posttable")
+   }
+
           let dataa = data;
           console.log("data=", data)
           if (dataa.token) {
@@ -181,11 +188,7 @@ console.log("postdate===",typeof this.postdate)
 
 
   guncelle():void {
-    this.imgng=(this.PostArray2[this.i].img)
-
-
-
-console.log("=========",this.post.img)
+    console.log("=========",this.post.img)
     let postid = parseInt(String(this.PostArray2[this.i].id));
 
     this.post.img = "data:image/png;base64," + this.sellersPermitString
@@ -196,10 +199,8 @@ console.log("=========",this.post.img)
       console.log("aaa=========",this.post.img)
       console.log("sellerspermitstring==",this.sellersPermitString)
     }
-
-
-
     console.log("post.img==",this.post.img)
+    this.post.title=this.titleng
     this.post.text = this.texttng
     this.post.date=this.postdate
     console.log("body olarak giden post =>",this.post)
@@ -213,17 +214,35 @@ console.log("=========",this.post.img)
 
     console.log("texttng===",this.texttng)
   }
-
+  formSubmitted:boolean=false;
   btnclick() {
+
+
     if (this.mod == 'Güncelle') {
       console.log("sa")
       this.guncelle()
+
       this.route.navigateByUrl("admin/Post/posttable")
+
     } else {
+
       this.addPerson()
+
+
     }
   }
 
+
+  submitForm(form:NgForm){
+    this.formSubmitted=true;
+    if(form.valid){
+this.restService.addPerson(this.post);
+this.post=new PostModel();
+form.reset();
+this.formSubmitted=false;
+    }
+
+  }
 
 
 }

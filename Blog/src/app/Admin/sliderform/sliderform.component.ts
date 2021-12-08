@@ -5,7 +5,8 @@ import {slidersModule} from "../sliders";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
-
+import {PostModel} from "../posts";
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {Router} from "@angular/router";
 })
 export class SliderformComponent implements OnInit {
 
-  imageSrc?:any;
+  imageSrc?: any;
   sellersPermitFile: any;
   ExteriorPicFile: any;
 
@@ -28,74 +29,79 @@ export class SliderformComponent implements OnInit {
   currentId: number = 0;
 
 
-
-
   slider = new slidersModule();
 
-  constructor(private http: HttpClient, private restService: RestService,private route:Router) {
+  constructor(private http: HttpClient, private restService: RestService, private route: Router) {
   }
 
   sliderURL: any;
   sliderid: any;
   model: any;
   base64Output ?: string;
-loading=false;
+  loading = false;
 
 
   ngOnInit(): void {
-    this.restService.changemod(0,"Slider Form")
+    this.restService.changemod(0, "Slider Form")
   }
 
   // onSubmit() {
   //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model))
   // }
 
-    // formsubmitted: boolean = false;
+  // formsubmitted: boolean = false;
 
-    // submitForm(form:NgForm){
-    //   this.formsubmitted = true ;
-    //   if(form.valid){
-    //     this.addSlider(this.slider);
-    //   }
-    // }
+  // submitForm(form:NgForm){
+  //   this.formsubmitted = true ;
+  //   if(form.valid){
+  //     this.addSlider(this.slider);
+  //   }
+  // }
 
-    // getValidationErrors(state: any) {
-    //   let ctrlName: string = state.id;
-    //   let messages: string[] = []
-    //   if (state.errors) {
-    //     for (let errorName in state.errors) {
-    //       switch (errorName) {
-    //         case "required":
-    //           messages.push(`you must enter ${ctrlName}`);
-    //           break;
-    //       }
-    //     }
-    //   }return messages
-    // }
-    addSlider()
-    {this.finalJson = {
+  // getValidationErrors(state: any) {
+  //   let ctrlName: string = state.id;
+  //   let messages: string[] = []
+  //   if (state.errors) {
+  //     for (let errorName in state.errors) {
+  //       switch (errorName) {
+  //         case "required":
+  //           messages.push(`you must enter ${ctrlName}`);
+  //           break;
+  //       }
+  //     }
+  //   }return messages
+  // }
+  addSlider() {
+    this.finalJson = {
       sellersPermitFile: this.ExteriorPicString,
     };
-      this.slider.URL = "data:image/png;base64,"+this.sellersPermitString
+    this.slider.URL = "data:image/png;base64," + this.sellersPermitString
+    const sliderdatesending = new DatePipe('en-US').transform(this.sliderdate, 'M d, y, hh:mm:ss ')
+    this.slider.date =  sliderdatesending
 
-      if(this.slider){
-      this.loading=true;
+    if (this.slider) {
+      this.loading = true;
       this.restService.addSlider(this.slider)
         .subscribe((data: any) => {
-          this.route.navigateByUrl("admin/Slider/slidertable")
-          let datta =data
-          if(datta.token){
-            this.loading=false;
-          }else{
-            this.loading=false;
+          if(this.formSubmitted==false){
+            this.route.navigateByUrl("admin/Slider/slidertable")
+          }
+          
+          let datta = data
+          if (datta.token) {
+            this.loading = false;
+          } else {
+            this.loading = false;
           }
           console.log(data)
-        },error => {
-          this.loading=false;
-          console.log("upload sırasında hata alındı ",error)
+        }, error => {
+          this.loading = false;
+          console.log("upload sırasında hata alındı ", error)
         })
-    }}
-  public picked(event:any, field:any) {
+    }
+  }
+
+  public picked(event: any, field: any) {
     this.currentId = field;
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
@@ -109,7 +115,7 @@ loading=false;
     }
   }
 
-  handleInputChange(files:any) {
+  handleInputChange(files: any) {
     let file = files;
     let pattern = /image-*/;
     let reader = new FileReader();
@@ -120,7 +126,8 @@ loading=false;
     reader.onloadend = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
-  _handleReaderLoaded(e:any) {
+
+  _handleReaderLoaded(e: any) {
     let reader = e.target;
     let base64result = reader.result.substr(reader.result.indexOf(',') + 1);
     //this.imageSrc = base64result;
@@ -139,8 +146,20 @@ loading=false;
     console.log('1', this.sellersPermitString);
     console.log("degistiiiiiiiiiiiiiiii")
   }
-}
 
+  formSubmitted: boolean = false;
+  sliderdate: any;
+
+  submitForm(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.valid) {
+      this.restService.addPerson(this.slider);
+      this.slider = new PostModel();
+      form.reset();
+      this.formSubmitted = false;
+    }
+  }
+}
 
 
 

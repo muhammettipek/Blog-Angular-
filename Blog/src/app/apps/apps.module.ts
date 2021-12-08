@@ -21,6 +21,7 @@ import { BannerComponent } from './shared/banner/banner.component';
 import { BannerNavigationComponent } from './shared/banner-navigation/banner-navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { PostdetayComponent } from './postdetay/postdetay.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
         // BannerContentComponent,
         BannerNavigationComponent,
         FooterComponent,
+        PostdetayComponent,
     ],
     imports: [
         CommonModule,

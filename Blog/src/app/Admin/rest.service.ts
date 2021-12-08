@@ -17,6 +17,7 @@ import {NavigationEnd, Router,Event} from "@angular/router";
 export class RestService {
   public degis:BehaviorSubject<number>=new BehaviorSubject<number>(1)
 
+  public index:BehaviorSubject<number>=new BehaviorSubject<number>(0)
 
   public mod:BehaviorSubject<string> = new BehaviorSubject("")
 
@@ -101,9 +102,13 @@ postdegis(postid:number,posts: PostModel): Observable<any>{
   //const body = JSON.stringify(posts);
    return this.http.put<PostModel>(`${this.postURL}/${postid}`,posts)
 
-
 }
-
+indexal(i:number){
+    this.index.next(i)
+}
+indexget(){
+    return this.index.asObservable()
+}
 
 }
 

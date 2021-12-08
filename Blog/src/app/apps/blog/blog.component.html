@@ -21,19 +21,19 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-4" *ngFor="let photo of images">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="{{photo.img}}" style="width: auto; height:200px;"
+        <div class="col-md-4" *ngFor="let photo of images; index as i">
+          <a class="card mb-4 box-shadow" routerLink="detail" (click)="indexigonder(i)">
+            <img class="card-img-top" src="{{photo.img}}"  style="width: auto; height:200px;"
                  alt="Card image cap">
 
             <div class="card-body">
               <p class="card-text"><span style="color:black;opacity: 50%;">{{photo.text}}</span></p>
 
-              <p style="text-align: right" class="card-text"><span style="color: red;opacity: 50%">{{photo.date|date:'YYYY'}}</span></p>
+              <p style="text-align: right" class="card-text"><span style="color: red;opacity: 50%">{{photo.date|date:'d MMMM':'':'tr-TR'}}</span></p>
             </div>
 
 
-          </div>
+          </a>
         </div>
       </div>
     </div>

@@ -1,13 +1,14 @@
-<form >
+<form #form="ngForm" (ngSubmit)="submitForm(form)" >
   <div id="anadiv">
+    <div class="bg-danger text-white p-3 my-2" *ngIf="formSubmitted&&form.invalid">Bir hata oluştu. Lütfen Girdiğiniz Bilgileri kontrol ediniz.</div>
+
+
     <div id="imagediv" class="view overlay" style="text-align: center" *ngIf="this.mod=='Güncelle'">
       <label class="view overlay" for="image">
       <input type="file" name="image" id="image" style="display: none;" (change)="picked($event,1)">
       <img class="img-fluid" src="{{image}}" style="width: 500px;height: 300px" alt="smaple image" *ngIf="image">
         <div class="mask flex-center rgba-black-light"></div>
       </label>
-
-
 
 
     </div>
@@ -19,23 +20,30 @@
              [(ngModel)]="imgng" name="pimg" #img="ngModel"
              placeholder="ImageURL" >
 
-      <div class="alert alert-danger " *ngIf="!img.valid && !img.untouched" style="height: 30px;">Bu alan zorunludur.</div>
+      <div class="alert alert-danger " *ngIf="(formSubmitted||img.dirty)&&img.invalid" style="height: 30px;">Bu alan zorunludur.</div>
+    </div>
 
+    <div class="form-group">
+     <input required type="text" placeholder="Title" [(ngModel)]="titleng" class="form-control " name="ptitle" #title="ngModel">
+      <div class="alert alert-danger " *ngIf="(formSubmitted||title.dirty)&&title.invalid" style="height: 30px;">Bu alan zorunludur.</div>
     </div>
-    <div>
-      <input type="text" placeholder="Title" [(ngModel)]="titleng" class="form-control mb-3" name="ptitle" #title="ngModel">
-    </div>
+
+
     <div class="form-group" style="width: 500px">
-      <textarea class="form-control" id="postformtextarea " [(ngModel)]="texttng" name="ptext" #txt="ngModel" rows="3" placeholder="Yazı"></textarea>
+      <textarea required class="form-control" id="postformtextarea " [(ngModel)]="texttng" name="ptext" #txt="ngModel" rows="3" placeholder="Yazı"></textarea>
+      <div class="alert alert-danger " *ngIf="(formSubmitted||txt.dirty)&&txt.invalid" style="height: 30px;">Bu alan zorunludur.</div>
     </div>
+
     <div>
-      <input name="pdate" #date="ngModel"
+      <input  name="pdate" #date="ngModel"
              [(ngModel)]="postdate" class="form-control"
              type="datetime-local" step="1">
+<!--      <div class="alert alert-danger " *ngIf="(formSubmitted||date.untouched)&&date.dirty" style="height: 30px;">Bu alan zorunludur.</div>-->
     </div>
     <div class="justify-content-center align-items-center d-flex col-12">
-      <button mat-raised-button id="button" (click)="btnclick()"
-               [class.spinner]="loading" [disabled]="loading"
+      <button mat-raised-button id="button" (click)="btnclick()" type="submit"
+              [class.btn-secondary]="formSubmitted&&form.invalid" [disabled]="formSubmitted&&form.invalid"
+               [class.spinner]="loading"
                class="btn btn-primary" style="">{{formbuton}}
         <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>
     </div>

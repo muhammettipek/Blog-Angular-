@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import {RestService} from "../../Admin/rest.service";
 import {slidersModule} from "../../Admin/sliders";
 import {PostModel} from "../../Admin/posts";
+import {DatePipe, registerLocaleData} from "@angular/common";
+import localeTr from "@angular/common/locales/tr"
 
 @Component({
   selector: 'app-blog',
@@ -28,13 +30,17 @@ export class BlogComponent implements OnInit {
   images:PostModel[]=[];
 
 
+
   index=["id","URL"];
   sliders:slidersModule[]=[];
 
   ngOnInit(): void {
+    registerLocaleData(localeTr, 'tr-TR');
+
 this.rs.getimg().subscribe(
   (response)=>{
     this.images=response;
+
   },
   (error)=>{
     console.log("errorimg ==",error)
@@ -69,5 +75,9 @@ this.rs.getimg().subscribe(
     if (this.service.loginStatusService) this.service.showEdit = true;
 
     this.router.navigate(['/blogDetail', id]);
+  }
+  indexigonder(i:number){
+    this.rs.indexal(i)
+    console.log("i==",i)
   }
 }
