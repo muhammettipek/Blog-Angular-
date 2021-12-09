@@ -1,9 +1,12 @@
 .anadiv{
-  background-color: rgba(126,255,242,0.45);
+  background-color: #fff5e7;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 
 
+}
+#cardd{
+  background-color: #f6f1ff;
 }

@@ -1,30 +1,29 @@
+<div class="anadiv">
+  <div id="cardd" class="card py-4 mb-4" style="max-width: 80%">
+    <div class="row no-gutters">
+    <div class="col-md-4">
 
-  <div class="anadiv">
-    <div class="container py-3 p-5 card mb-4 box-shadow">
+      <img class="card-img" src="{{imgagesrc}}" style="width: 480px;float: right;height:300px;position: relative;background-color: #1dc8cc"
+           alt="Card image cap">
 
-<div class="row" >
-        <p  style="color: red;font-size: 30px;">{{titleng}}</p>
     </div>
 
 
-    <div class="row" >
-<div style="width: 100%" class="mb-5">
-          <img src="{{imgagesrc}}" style="float: right;height:300px;position: relative;background-color: #1dc8cc"
-               alt="Card image cap">
+    <div class="col-md-8">
+    <div class="card-body ">
+      <p class="card-title" style="color: red;font-size: 30px;">{{titleng}}</p>
+      <p class="card-text mt-4"><span style="color:black;">{{textt}}</span></p>
+
+
+
+      <p class="card-text" style="font-size: 15px">
+        <small class="text-muted">{{dateng|date:'d MMMM':'':'tr-TR'}}</small></p>
+
+
     </div>
 
-
-
-          <div class="card-text ">
-            <p class="card-text"><span style="color:black;">{{textt}}</span></p>
-
-
-
-
-            <p style="width: 100%;text-align: right" ><span style="text-align:right;color: red;opacity: 50%">{{dateng|date:'d MMMM':'':'tr-TR'}}</span></p>
-          </div>
-
-
+  </div>
     </div>
   </div>
 </div>
+

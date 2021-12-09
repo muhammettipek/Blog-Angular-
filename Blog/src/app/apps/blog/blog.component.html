@@ -23,13 +23,20 @@
       <div class="row">
         <div class="col-md-4" *ngFor="let photo of images; index as i">
           <a class="card mb-4 box-shadow" routerLink="detail" (click)="indexigonder(i)">
+
             <img class="card-img-top" src="{{photo.img}}"  style="width: auto; height:200px;"
                  alt="Card image cap">
 
-            <div class="card-body">
-              <p class="card-text"><span style="color:black;opacity: 50%;">{{photo.text}}</span></p>
+          <div  style="position:absolute;width: 100%;text-align: right;align-items: end;justify-content: end;display: flex">
 
-              <p style="text-align: right" class="card-text"><span style="color: red;opacity: 50%">{{photo.date|date:'d MMMM':'':'tr-TR'}}</span></p>
+            <div class="mr-2 mt-1" style="background-color: rgba(120, 120, 120, 0.3);width: 17%;text-align: right;">
+            <div  style=";color: #fe4d00;opacity: 1;text-align: center;">{{photo.date|date:'d MMMM':'':'tr-TR'}}</div>
+          </div>
+
+          </div>
+
+            <div class="card-body">
+              <p class="card-text"><span style="color:black;opacity: 50%;">{{photo.title}}</span></p>
             </div>
 
 
