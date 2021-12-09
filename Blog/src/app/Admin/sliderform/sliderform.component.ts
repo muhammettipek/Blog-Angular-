@@ -42,6 +42,10 @@ export class SliderformComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let tarih=new Date()
+    this.sliderdate = new DatePipe('en-US').transform(tarih,'yyyy-MM-ddThh:mm:ss')
+
+
     this.restService.changemod(0, "Slider Form")
   }
 
@@ -86,7 +90,7 @@ export class SliderformComponent implements OnInit {
           if(this.formSubmitted==false){
             this.route.navigateByUrl("admin/Slider/slidertable")
           }
-          
+
           let datta = data
           if (datta.token) {
             this.loading = false;

@@ -8,6 +8,7 @@ import {slidersModule} from "../../Admin/sliders";
 import {PostModel} from "../../Admin/posts";
 import {DatePipe, registerLocaleData} from "@angular/common";
 import localeTr from "@angular/common/locales/tr"
+import {getDay} from "ngx-bootstrap/chronos";
 
 @Component({
   selector: 'app-blog',
@@ -33,9 +34,15 @@ export class BlogComponent implements OnInit {
 
   index=["id","URL"];
   sliders:slidersModule[]=[];
+  tarih:any;
+
+
 
   ngOnInit(): void {
     registerLocaleData(localeTr, 'tr-TR');
+
+
+
 
 this.rs.getimg().subscribe(
   (response)=>{
@@ -80,4 +87,11 @@ this.rs.getimg().subscribe(
     this.rs.indexal(i)
     console.log("i==",i)
   }
+  get sortData() {
+    return this.images.sort((a, b) => {
+      return <any>new Date(b.date) - <any>new Date(a.date);
+    });
+  }
+
+
 }

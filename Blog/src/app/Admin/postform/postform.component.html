@@ -24,25 +24,26 @@
     </div>
 
     <div class="form-group">
-     <input required type="text" placeholder="Title" [(ngModel)]="titleng" class="form-control " name="ptitle" #title="ngModel">
+     <input required maxlength="28" type="text" placeholder="Title" [(ngModel)]="titleng" class="form-control " name="ptitle" #title="ngModel">
       <div class="alert alert-danger " *ngIf="(formSubmitted||title.dirty)&&title.invalid" style="height: 30px;">Bu alan zorunludur.</div>
     </div>
 
 
     <div class="form-group" style="width: 500px">
-      <textarea required class="form-control" id="postformtextarea " [(ngModel)]="texttng" name="ptext" #txt="ngModel" rows="3" placeholder="Yazı"></textarea>
+      <textarea required  class="form-control" id="postformtextarea "  [(ngModel)]="texttng" name="ptext" #txt="ngModel" rows="3" placeholder="Yazı"></textarea>
       <div class="alert alert-danger " *ngIf="(formSubmitted||txt.dirty)&&txt.invalid" style="height: 30px;">Bu alan zorunludur.</div>
     </div>
 
     <div>
-      <input  name="pdate" #date="ngModel"
+
+      <input  name="pdate"
              [(ngModel)]="postdate" class="form-control"
-             type="datetime-local" step="1">
+              type="datetime-local" step="1">
 <!--      <div class="alert alert-danger " *ngIf="(formSubmitted||date.untouched)&&date.dirty" style="height: 30px;">Bu alan zorunludur.</div>-->
     </div>
     <div class="justify-content-center align-items-center d-flex col-12">
-      <button mat-raised-button id="button" (click)="btnclick()" type="submit"
-              [class.btn-secondary]="formSubmitted&&form.invalid" [disabled]="formSubmitted&&form.invalid"
+      <button  mat-raised-button id="button" (click)="btnclick()" type="submit"
+              [class.btn-secondary]="formSubmitted&&form.invalid" [disabled]="!formSubmitted&&form.invalid"
                [class.spinner]="loading"
                class="btn btn-primary" style="">{{formbuton}}
         <i class="fa fa-spinner fa-spin" *ngIf="loading"></i></button>

@@ -44,13 +44,25 @@ export class RestService {
   URL: string = 'http://localhost:3000/Sliders';
   img: string = "http://localhost:3000/Posts";
 
-  getimg() {
+
+
+
+
+  getimg(i:number) {
+
     return this.http.get<PostModel[]>(this.img)
+
+
   }
+
+
+
 
   getslider() {
     return this.http.get<slidersModule[]>(this.URL)
   }
+
+
 
 
   addSlider(slider: slidersModule): Observable<any> {
@@ -58,17 +70,17 @@ export class RestService {
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(slider);
 
-    console.log("Osman=", body)
+    //console.log("Osman=", body)
     console.log("upload succesfully")
     return this.http.post(this.baseURL + "/Sliders", body, {'headers': headers})
 
 
   }
 
-  addPerson(posts: PostModel): Observable<any> {
+  addPerson(posts: slidersModule): Observable<any> {
     const headers = {'content-type': 'application/json'}
     const body = JSON.stringify(posts);
-    console.log("Osman=", body)
+    //console.log("Osman=", body)
     return this.http.post(this.baseURL + "/Posts", body, {'headers': headers})
 
   }
