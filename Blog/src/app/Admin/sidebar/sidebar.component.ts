@@ -15,6 +15,7 @@ import {VERSION}from '@angular/material/core';
 })
 export class SidebarComponent implements OnInit{
 
+
   @ViewChild("appDrawer") appDrawer?: ElementRef;
   mod?: string;
 yazi = "Hoşgeldiniz....."

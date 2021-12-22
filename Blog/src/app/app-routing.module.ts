@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from "./Admin/admin/admin.component";
 
 import {AdminfullComponent} from "./Admin/adminfull/adminfull.component";
+import {AdminpanelformComponent} from "./apps/adminpanelform/adminpanelform.component";
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     children:[
       {path:"",loadChildren: () => import('src/app/Admin/adminmodule.module').then(m => m.AdminmoduleModule)},
       {path:"admin",component:AdminfullComponent},
+      {path:"login",component:AdminpanelformComponent}
 
     ]
   }

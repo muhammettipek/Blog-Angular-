@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {slidersModule} from "./sliders";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, observable, Observable, of} from "rxjs";
 import {PostModel} from "./posts";
 import {ValidatorFn, AbstractControl, FormControl, Validators} from "@angular/forms";
 import {FormGroup} from "@angular/forms";
@@ -9,6 +9,8 @@ import * as AWS from "aws-sdk";
 import {catchError, map} from "rxjs/operators";
 import {SidebarComponent} from "./sidebar/sidebar.component";
 import {NavigationEnd, Router,Event} from "@angular/router";
+import {any} from "codelyzer/util/function";
+import {sortTasksByPriority} from "@angular/compiler-cli/ngcc/src/execution/tasks/utils";
 
 
 @Injectable({
@@ -32,6 +34,7 @@ export class RestService {
   id?:number
 
   public appDrawer:any;
+  private PostModel:Array<PostModel> = []
 
   constructor(private http: HttpClient,private router:Router) {
     this.router.events.subscribe((event: Event) => {
@@ -45,14 +48,44 @@ export class RestService {
   img: string = "http://localhost:3000/Posts";
 
 
+imgg:Array<PostModel>=[]
+
+  postarray:Array<PostModel>=[]
+
+  getimg() {
+    return this.http.get<PostModel[]>(this.img).pipe(map((data)=>{
+      data.sort((a, b) => {
+        return <any>new Date(b.date) - <any>new Date(a.date);
+      });
+      return data
+    }))
 
 
+  //  this.http.get<PostModel[]>(this.img).subscribe((images)=>{
+  //
+  //   this.postarray=images
+  //
+  //   this.postarray.sort((a, b) => {
+  //     return <any>new Date(b.date) - <any>new Date(a.date);
+  //
+  // })
+  //
+  //
+  //    console.log("asfasdfa===",this.postarray)
+  //
+  //
+  //
+  //   });
+  //   console.log("asdhkjfashdkjfss",this.postarray)
+  //   return of(this.postarray)
+  }
 
-  getimg(i:number) {
+// gett(){
+//   return this.postarray;
+// }
 
-    return this.http.get<PostModel[]>(this.img)
-
-
+  getss(){
+   return this.http.get<PostModel[]>(this.img)
   }
 
 

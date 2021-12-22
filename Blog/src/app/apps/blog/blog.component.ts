@@ -17,7 +17,7 @@ import {getDay} from "ngx-bootstrap/chronos";
 })
 export class BlogComponent implements OnInit {
   blogsDetail: Blog[] = [];
-
+  datePipe: DatePipe = new DatePipe('tr-TR');
   constructor(
     public service: ServiceblogService,
     public router: Router,
@@ -38,13 +38,14 @@ export class BlogComponent implements OnInit {
 
 
 
+
   ngOnInit(): void {
     registerLocaleData(localeTr, 'tr-TR');
 
 
 
 
-this.rs.getimg().subscribe(
+this.rs.getss().subscribe(
   (response)=>{
     this.images=response;
 
@@ -89,9 +90,23 @@ this.rs.getimg().subscribe(
   }
   get sortData() {
     return this.images.sort((a, b) => {
-      return <any>new Date(b.date) - <any>new Date(a.date);
+      return <any>new Date(b.date!) - <any>new Date(a.date!);
     });
   }
 
+  get sortslider() {
+    return this.sliders.sort((a, b) => {
+      return <any>new Date(b.date!) - <any>new Date(a.date!);
+    });
+  }
+
+ get dater(){
+
+    let myDate = new Date()
+    let transforDate = this.datePipe.transform(myDate, 'yyyy-MM-ddThh:mm:ss');
+
+   return
+
+  }
 
 }

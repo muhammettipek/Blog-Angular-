@@ -22,7 +22,7 @@ mod?:string
     this.restservice.changemod(0,"Post Table")
 
 
-    this.restservice.getimg().subscribe(
+    this.restservice.getss().subscribe(
       (response)=>{
         this.PostArray=response;
       },

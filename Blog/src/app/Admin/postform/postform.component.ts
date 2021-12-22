@@ -68,7 +68,7 @@ export class PostformComponent implements OnInit {
     // console.log("tarih==", this.postdate)
     registerLocaleData(localeTr, 'tr-TR');
 
-    this.restService.getimg().subscribe(response => {
+    this.restService.getss().subscribe(response => {
       this.PostArray2 = response;
       if (this.mod == 'Güncelle') {
         this.postdate = (this.PostArray2[this.i].date)
@@ -108,7 +108,9 @@ export class PostformComponent implements OnInit {
 
 
     const dateSendingToServer = new DatePipe('en-US').transform(this.postdate, 'yyyy-MM-ddThh:mm:ss')
-    this.post.date = dateSendingToServer
+    if (dateSendingToServer != null) {
+      this.post.date = dateSendingToServer
+    }
 
     console.log("osman=", dateSendingToServer)
 

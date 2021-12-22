@@ -16,3 +16,7 @@
   margin-top: 5px;
   width: 50%
 }
+.scroll {
+  max-height: 200px;
+  overflow-y: auto;
+}
