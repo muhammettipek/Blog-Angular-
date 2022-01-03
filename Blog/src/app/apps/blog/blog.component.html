@@ -18,16 +18,17 @@
   </carousel>
 
 
-  <div class="album py-5 bg-light" >
-    <div class="container" >
+  <div class="album py-5 bg-light">
+    <div class="container">
       <div class="row">
-        <div class="col-md-4" ng-mouseover="changeText=true" ng-mouseleave="changeText=false" *ngFor="let post of sortData; index as i;">
+        <div class="col-md-4" ng-mouseover="changeText=true" ng-mouseleave="changeText=false" *ngFor="let post of sortData(); index as i; ">
+
           <a class="card mb-4 box-shadow" *ngIf="i<12" routerLink="detail" (click)="indexigonder(i)">
 
-            <img class="card-img-top" src="{{post.img}}"  style="width: auto; height:200px;"
+            <img class="card-img-top" src="{{post.img}}" style="width: auto; height:200px;"
                  alt="Card image cap">
 
-          <div  style="position:absolute;width: 100%;text-align: right;align-items: end;justify-content: end;display: flex">
+          <div style="position:absolute;width: 100%;text-align: right;align-items: end;justify-content: end;display: flex">
 
             <div class="backgroundclass">
             <div  style=";color: #fe4d00;opacity: 1;text-align: center;">{{post.date|date:'d MMMM hh.mm.ss':'':'tr-TR'}}</div>
@@ -51,7 +52,9 @@
 
 
           </a>
+
         </div>
+
       </div>
     </div>
   </div>

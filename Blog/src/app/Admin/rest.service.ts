@@ -11,6 +11,7 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
 import {NavigationEnd, Router,Event} from "@angular/router";
 import {any} from "codelyzer/util/function";
 import {sortTasksByPriority} from "@angular/compiler-cli/ngcc/src/execution/tasks/utils";
+import {DatePipe} from "@angular/common";
 
 
 @Injectable({
@@ -35,7 +36,7 @@ export class RestService {
 
   public appDrawer:any;
   private PostModel:Array<PostModel> = []
-
+  datePipe: DatePipe = new DatePipe('tr-TR');
   constructor(private http: HttpClient,private router:Router) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
@@ -46,7 +47,7 @@ export class RestService {
 
   URL: string = 'http://localhost:3000/Sliders';
   img: string = "http://localhost:3000/Posts";
-
+  myDate = new Date()
 
 imgg:Array<PostModel>=[]
 
@@ -56,7 +57,8 @@ imgg:Array<PostModel>=[]
     return this.http.get<PostModel[]>(this.img).pipe(map((data)=>{
       data.sort((a, b) => {
         return <any>new Date(b.date) - <any>new Date(a.date);
-      });
+      })
+
       return data
     }))
 

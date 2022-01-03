@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Blog } from './blog-type';
-import { ServiceblogService } from './blog-service.service';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {Blog} from './blog-type';
+import {ServiceblogService} from './blog-service.service';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 import {RestService} from "../../Admin/rest.service";
 import {slidersModule} from "../../Admin/sliders";
 import {PostModel} from "../../Admin/posts";
 import {DatePipe, registerLocaleData} from "@angular/common";
 import localeTr from "@angular/common/locales/tr"
-import {getDay} from "ngx-bootstrap/chronos";
 
 @Component({
   selector: 'app-blog',
@@ -35,15 +34,12 @@ export class BlogComponent implements OnInit {
   index=["id","URL"];
   sliders:slidersModule[]=[];
   tarih:any;
-
-
+  array1:Array<any>=[1,2,3,4,5,6,7,8,9,10]
+mydate=new Date()
 
 
   ngOnInit(): void {
     registerLocaleData(localeTr, 'tr-TR');
-
-
-
 
 this.rs.getss().subscribe(
   (response)=>{
@@ -88,10 +84,19 @@ this.rs.getss().subscribe(
     this.rs.indexal(i)
     console.log("i==",i)
   }
-  get sortData() {
-    return this.images.sort((a, b) => {
+
+   sortData() {
+    console.log("asdjkfskd")
+     this.images.sort((a, b) => {
+
       return <any>new Date(b.date!) - <any>new Date(a.date!);
-    });
+
+      })
+    return this.images.filter((a) => {
+  return <any>new Date(a.date) < <any>new Date(this.dater!)
+
+
+})
   }
 
   get sortslider() {
@@ -103,10 +108,9 @@ this.rs.getss().subscribe(
  get dater(){
 
     let myDate = new Date()
-    let transforDate = this.datePipe.transform(myDate, 'yyyy-MM-ddThh:mm:ss');
-
-   return
+   return this.datePipe.transform(myDate, 'yyyy-MM-ddThh:mm:ss')
 
   }
+
 
 }
