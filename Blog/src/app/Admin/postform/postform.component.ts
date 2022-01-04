@@ -55,11 +55,14 @@ export class PostformComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.restService.changemod(0,"Post Form")
+
+
     let tarih=new Date()
     this.postdate = new DatePipe('en-US').transform(tarih,'yyyy-MM-ddThh:mm:ss')
 
 
-    console.log("tarih==",this.postdate)
+
 
 
 
@@ -103,8 +106,6 @@ export class PostformComponent implements OnInit {
     this.post.img = "data:image/png;base64," + this.sellersPermitString
     this.post.text = this.texttng
     this.post.title = this.titleng
-    console.log("titleee===", this.titleng)
-    console.log("postdate===", typeof this.postdate)
 
 
     const dateSendingToServer = new DatePipe('en-US').transform(this.postdate, 'yyyy-MM-ddThh:mm:ss')
@@ -112,7 +113,7 @@ export class PostformComponent implements OnInit {
       this.post.date = dateSendingToServer
     }
 
-    console.log("osman=", dateSendingToServer)
+
 
     if (this.formSubmitted == false) {
 
@@ -202,25 +203,20 @@ this.route.navigateByUrl('admin/Post/posttable')
     if (this.post.img == 'data:image/png;base64,undefined') {
       this.sellersPermitString = (this.PostArray2[this.i].img)
       this.post.img = (this.PostArray2[this.i].img)
-      console.log("aaa=========", this.post.img)
-      console.log("sellerspermitstring==", this.sellersPermitString)
+
     }
-    console.log("post.img==", this.post.img)
+
     this.post.title = this.titleng
     this.post.text = this.texttng
     this.post.date = this.postdate
-    console.log("body olarak giden post =>", this.post)
-    console.log("this.texttng =>", this.texttng)
     this.restService.postdegis(postid, this.post).subscribe(postt => {
-      console.log("put işlemi başarılı ")
-      console.log("response ===", postt)
 
     }, error => {
       console.error("post güncelleme sırasında hata ===", error)
     })
 
 
-    console.log("texttng===", this.texttng)
+
   }
 
   formSubmitted: boolean = false;
@@ -229,7 +225,6 @@ this.route.navigateByUrl('admin/Post/posttable')
 
 
     if (this.mod == 'Güncelle') {
-      console.log("sa")
       this.guncelle()
 
       this.route.navigateByUrl("admin/Post/posttable")

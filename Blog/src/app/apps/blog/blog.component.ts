@@ -8,6 +8,14 @@ import {slidersModule} from "../../Admin/sliders";
 import {PostModel} from "../../Admin/posts";
 import {DatePipe, registerLocaleData} from "@angular/common";
 import localeTr from "@angular/common/locales/tr"
+import {log} from "util";
+import {any} from "codelyzer/util/function";
+
+class sortslider {
+  id?: number;
+  URL?: string;
+  date?:string|null;
+}
 
 @Component({
   selector: 'app-blog',
@@ -30,12 +38,11 @@ export class BlogComponent implements OnInit {
   images:PostModel[]=[];
 
 
-
   index=["id","URL"];
   sliders:slidersModule[]=[];
   tarih:any;
-  array1:Array<any>=[1,2,3,4,5,6,7,8,9,10]
-mydate=new Date()
+  array1:Array<slidersModule>=[]
+  mydate=new Date()
 
 
   ngOnInit(): void {
@@ -44,6 +51,7 @@ mydate=new Date()
 this.rs.getss().subscribe(
   (response)=>{
     this.images=response;
+
 
   },
   (error)=>{
@@ -54,7 +62,8 @@ this.rs.getss().subscribe(
 
     this.rs.getslider().subscribe(
       (response)=>{
-        this.sliders=response;
+
+        this.sliderarray=response;
       },
       (error)=>{
         console.log("error:",error)
@@ -81,27 +90,35 @@ this.rs.getss().subscribe(
     this.router.navigate(['/blogDetail', id]);
   }
   indexigonder(i:number){
+
     this.rs.indexal(i)
     console.log("i==",i)
   }
 
-   sortData() {
-    console.log("asdjkfskd")
+  sortData() {
+
      this.images.sort((a, b) => {
 
-      return <any>new Date(b.date!) - <any>new Date(a.date!);
+
+       return <any>new Date(b.date!) - <any>new Date(a.date!);
 
       })
     return this.images.filter((a) => {
+
   return <any>new Date(a.date) < <any>new Date(this.dater!)
 
 
 })
   }
 
-  get sortslider() {
-    return this.sliders.sort((a, b) => {
+sliderarray:Array<sortslider>=[]
+
+ get sortslider() {
+    console.log("adfasd")
+    return this.sliderarray.sort((a, b) => {
+
       return <any>new Date(b.date!) - <any>new Date(a.date!);
+
     });
   }
 
